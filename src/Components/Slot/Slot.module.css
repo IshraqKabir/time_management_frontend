@@ -1,0 +1,68 @@
+.SlotOnHover {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    display: grid;
+    /* justify-items: end; */
+    grid-template-areas: 
+    "StartTime . Buttons"
+    "Task Task Task"
+    "Project Project Project"
+    ". . EndTime";
+}
+
+.Slot {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    display: grid;
+    /* justify-items: end; */
+    grid-template-areas: 
+    "StartTime . ."
+    "Task Task Task"
+    ". . EndTime";
+}
+
+.Slot > * {
+    padding: 0px;
+    margin: 0px;
+}
+
+.StartTime {
+    grid-area: StartTime;
+}
+
+.EndTime {
+    grid-area: EndTime;
+}
+
+.Buttons {
+    grid-area: Buttons;
+    justify-self: end;
+}
+
+.Task {
+    grid-area: Task;
+}
+
+.Agenda {
+    grid-area: Agenda;
+}
+
+.Objective {
+    grid-area: Objective;
+}
+
+.Project {
+    grid-area: Project;
+}
+
+
+.Buttons button {
+    padding: 0px;
+    margin: 0px;
+}
+
+
+
+
