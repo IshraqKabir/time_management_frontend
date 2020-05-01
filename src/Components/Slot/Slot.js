@@ -110,7 +110,7 @@ class Slot extends React.Component {
                     
                 </div>
                 <div className={classes.Project}>
-                    Project : {this.state.projectName ? this.state.projectName : null}
+                    {this.state.projectName ? 'Project :' + this.state.projectName : null}
                 </div>
             </div>)
         } else {
