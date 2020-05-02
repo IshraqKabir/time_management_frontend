@@ -11,6 +11,21 @@
     ". . EndTime";
 }
 
+.SlotOnDelete {
+    
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    display: grid;
+    /* justify-items: end; */
+    grid-template-areas: 
+    "StartTime . Buttons"
+    "DeleteConfirmation DeleteConfirmation DeleteConfirmation"
+    "Task Task Task"
+    "Project Project Project"
+    ". . EndTime";
+}
+
 .Slot {
     background-color: white;
     border: 1px solid black;
@@ -21,6 +36,12 @@
     "StartTime . ."
     "Task Task Task"
     ". . EndTime";
+}
+
+.DeleteConfirmation {
+    grid-area: DeleteConfirmation;
+    background-color: #47f78c80;
+    color: black;
 }
 
 .Slot > * {
@@ -64,5 +85,27 @@
 }
 
 
+.DeleteButton {
+    background: transparent;
+    border: 1px solid #f00;
+    border-radius: 2em;
+    color: #f00;
+    display: inline-block;
+    font-size: 12px;
+    height: 20px;
+    line-height: 2px;
+    margin: 0 0 8px;
+    padding: 0;
+    text-align: center;
+    width: 20px;
+    }
 
+.Trash {
+    color: red;
+    margin: 3px 3px;
+}
+
+.Trash:hover {
+    color: blue;
+}
 

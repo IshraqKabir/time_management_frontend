@@ -3,7 +3,8 @@ import classes from './Slot.module.css'
 
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfo, faTrash } from '@fortawesome/free-solid-svg-icons'
+// import { faInfo, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FaTrash } from 'react-icons/fa'
 class Slot extends React.Component {
     state = {
         id: null,
@@ -23,7 +24,8 @@ class Slot extends React.Component {
         objectiveName: null,
         agendaID: null,
         agendaName: null,
-        slotOnHover: false
+        slotOnHover: false,
+        onDelete: false
 
     }
 
@@ -84,9 +86,50 @@ class Slot extends React.Component {
             })
     }
 
+    handleDelete = (e) => { 
+        console.log(`Delete button clicked on slot id : ${this.state.id} task : ${this.state.taskName}`)
+        this.setState({onDelete:true})
+    }
+
     render(){
         let slot = null
-        if (this.state.slotOnHover) {
+        if (this.state.onDelete) {
+            slot = (
+                <div className={classes.SlotOnDelete} onMouseLeave={() => this.setState({slotOnHover: false})}>
+                <div className={classes.StartTime}>
+                    Start  <span style={{color:'red'}}>{this.state.startHours}:{this.state.startMins === 0 ? '00' : this.state.startMins}</span>
+                </div>
+                <div className={classes.EndTime}>
+                    End  <span style={{color:'red'}}>{this.state.endHours}:{this.state.endMins === 0 ? '00' : this.state.endMins}</span>
+                </div>
+                <div className={classes.DeleteConfirmation}>
+                    <div>Are you sure you want to delete?</div>
+                    <div style={{display:'inline'}}><span style={{color:'red'}} onClick={this.props.onDelete}>Yes</span> <span>No</span></div>
+                </div>
+                <div className={classes.Buttons}>
+                    {/* <button>Delete
+                    </button> */}
+                    <FaTrash className={classes.Trash} onClick={this.handleDelete} />
+                    {/* <button className={classes.DeleteButton} onClick={this.handleDelete}>-</button> */}
+                    {/* <span ><FontAwesomeIcon id={this.state.id} onClick={this.handleDelete} icon={faInfo} style={{color:'blue'}}/></span> */}
+                    {/* <FontAwesomeIcon icon={faTrash} style={{color:'red', marginLeft:'10px', marginRight:'5px'}}/> */}
+                </div>
+                <div className={classes.Task}>
+                    {this.state.taskID ? 'Task: ' + this.state.taskName : 'blank'}
+                </div>
+                <div className={classes.Agenda}>
+        
+                </div>
+                <div className={classes.Objective}>
+                    
+                </div>
+                <div className={classes.Project}>
+                    {this.state.projectName ? 'Project :' + this.state.projectName : null}
+                </div>
+            </div>
+            )
+        }
+        else if (this.state.slotOnHover) {
             slot = (<div className={classes.SlotOnHover} onMouseLeave={() => this.setState({slotOnHover: false})}>
                 <div className={classes.StartTime}>
                     Start  <span style={{color:'red'}}>{this.state.startHours}:{this.state.startMins === 0 ? '00' : this.state.startMins}</span>
@@ -97,8 +140,10 @@ class Slot extends React.Component {
                 <div className={classes.Buttons}>
                     {/* <button>Delete
                     </button> */}
-                    <FontAwesomeIcon icon={faInfo} style={{color:'blue'}}/>
-                    <FontAwesomeIcon icon={faTrash} style={{color:'red', marginLeft:'10px', marginRight:'5px'}}/>
+                    <FaTrash className={classes.Trash} onClick={this.handleDelete} />
+                    {/* <button className={classes.DeleteButton} onClick={this.handleDelete}>-</button> */}
+                    {/* <span ><FontAwesomeIcon id={this.state.id} onClick={this.handleDelete} icon={faInfo} style={{color:'blue'}}/></span> */}
+                    {/* <FontAwesomeIcon icon={faTrash} style={{color:'red', marginLeft:'10px', marginRight:'5px'}}/> */}
                 </div>
                 <div className={classes.Task}>
                     {this.state.taskID ? 'Task: ' + this.state.taskName : 'blank'}

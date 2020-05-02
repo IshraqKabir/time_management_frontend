@@ -23,11 +23,32 @@ class SingleDay extends React.Component {
             })
                 .catch(error => console.log(error))
     }
+
+    handleSlotDelete = (slotID) => {
+        let _slots = this.state.slots
+        let index = _slots.indexOf(slotID)
+        if (index > -1) {
+            _slots.splice(index, 1)
+        }
+        axios({
+            method: 'DELETE',
+            url: `http://localhost:8000/api/slots/${slotID}`
+        })
+            .then(()=> {
+                this.setState({slots: _slots})
+            })
+                .catch(error => console.log(error))
+    }
+
     render() {
         let slots = null
         if (this.state.slots) {
             slots = this.state.slots.map(id => {
-                return <Slot slotID={id} key={id}>{id}</Slot>
+                return <Slot 
+                            slotID={id} 
+                            key={id}
+                            onDelete={() => this.handleSlotDelete(id)}
+                        >{id}</Slot>
             })
         }
         return(
